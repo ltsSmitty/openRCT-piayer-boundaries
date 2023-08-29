@@ -3,9 +3,9 @@
 import { startup } from "./startup";
 
 registerPlugin({
-	name: "Name of your plugin",
+	name: "Player Boundaries",
 	version: "1.0",
-	authors: [ "Your name" ],
+	authors: ["ltsSmitty"],
 	type: "remote",
 	licence: "MIT",
 	/**
