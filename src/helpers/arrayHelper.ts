@@ -23,13 +23,13 @@ export function getAtIndex<T>(array: T[] | null, index: number | null): T | null
  * @param array The array to check.
  * @param predicate The function to match the items against.
  */
-export function findIndex<T>(array: T[], predicate: (item: T) => boolean): number | null {
+export function findIndex<T>(array: T[], predicate: (item: T) => boolean): number {
     for (let i = 0; i < array.length; i++) {
         if (predicate(array[i])) {
             return i;
         }
     }
-    return null;
+    return -1;
 }
 
 
@@ -51,3 +51,21 @@ export function find<T>(array: T[], predicate: (item: T) => boolean): T | null {
 export function firstOrNull<T>(array: T[]): T | null {
     return (array.length > 0) ? array[0] : null;
 }
+
+export const createArrayAndFill = <T>(length: number, value: T): T[] => {
+    return (new Array(length)).map(() => value);
+}
+
+/**
+ * Gets [key, value] for each key in T. Functions to polyfill arrect.entries for to get missing functionality.
+ * @param arr The array to get entries from.
+ */
+export function entries<T>(arr: { [key: string]: T }): [string, T][] {
+    var ownProps = Object.keys(arr),
+        i = ownProps.length,
+        resArray = new Array(i); // preallocate the Array
+    while (i--)
+        resArray[i] = [ownProps[i], arr[ownProps[i]]];
+
+    return resArray;
+};
