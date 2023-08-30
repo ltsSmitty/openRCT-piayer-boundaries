@@ -14,11 +14,22 @@
 		"outDir": "out",
 		"strict": true,
 		"target": "es5",
-		"lib": [ "es5" ]
+		"lib": [
+			"es5"
+		],
+		"baseUrl": ".",
+		"paths": {
+			"~/*": [
+				"./src/*"
+			],
+			"~~/*": [
+				"../src/*"
+			],
+		},
 	},
 	"include": [
 		"./lib/**/*.ts",
 		"./src/**/*.ts",
 	],
-	"noEmit": true
+	"noEmit": true,
 }
