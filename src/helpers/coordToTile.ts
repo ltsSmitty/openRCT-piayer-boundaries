@@ -11,11 +11,13 @@ export const mapCoordsToTileCoords = (mapCoords: CoordsXY): TileCoordXY => {
     if (x % 32 !== 0 || y % 32 !== 0) {
         ui.showError(`Tiling error`, `mapCoordsToTileCoords: mapCoords ${mapCoords} are not divisible by 32`)
     }
-    return { x, y }
+    return mapCoords
+    // return { x, y }
 }
 
 export const tileCoordsToMapCoords = (tileCoords: TileCoordXY): CoordsXY => {
     const x = tileCoords.x * 32
     const y = tileCoords.y * 32
-    return { x, y }
+    return tileCoords
+    // return { x, y }
 }
