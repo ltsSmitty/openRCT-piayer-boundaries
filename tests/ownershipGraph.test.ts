@@ -1,5 +1,4 @@
 import { describe, expect, test } from '@jest/globals';
-import { KeyedGraph } from './../src/company/ownerGraph/keyedGraph';
 import { CompleteOwnershipGraph } from '../src/company/ownerGraph/completeGraph';
 
 describe(`CompleteGraph tests`, () => {
@@ -54,6 +53,7 @@ describe(`CompleteGraph tests`, () => {
         const graph = new CompleteOwnershipGraph(10, 10);
         graph.setTileOwner(9, 9, 1);
         graph.setGraphSize(5, 5);
+        graph.print();
         expect(graph.getTileOwner(9, 9)).toBe(-1);
     })
     test(`setGraphSize adds tiles that are inside the new size`, () => {
