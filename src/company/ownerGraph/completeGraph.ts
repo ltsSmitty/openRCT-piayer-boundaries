@@ -6,10 +6,12 @@ export class CompleteOwnershipGraph implements OwnershipGraph {
     /**
      * A 2d array representing the ownership of each tile, where the value at an index is the id of the company that owns that tile. A value of -1 means no company owns that tile.
      */
-    private tileOwner: number[][];
+    private tileOwner: number[][] = []
 
     constructor(width: number, height: number) {
+        console.log(this.tileOwner);
         this.tileOwner = new Array(width);
+
         for (let i = 0; i < width; i++) {
             this.tileOwner[i] = createArrayAndFill(height, -1)
         }
@@ -24,15 +26,22 @@ export class CompleteOwnershipGraph implements OwnershipGraph {
     }
 
     setTileOwner(x: number, y: number, owner: number): void {
+        console.log(`setting tileowner graph (${x}, ${y}) to ${owner})`)
         this.tileOwner[x][y] = owner;
     }
 
     setRangeOwner(topLeft: TileCoordXY, bottomRight: TileCoordXY, companyId: number): void {
+        this.printTileOwnerSize();
+        console.log(`setting range owner from ${topLeft.x}, ${topLeft.y} to ${bottomRight.x}, ${bottomRight.y} to company ${companyId}`)
         for (let x = topLeft.x; x <= bottomRight.x; x++) {
             for (let y = topLeft.y; y <= bottomRight.y; y++) {
                 this.setTileOwner(x, y, companyId);
             }
         }
+    }
+
+    printTileOwnerSize(): void {
+        console.log(`tileOwner size: ${this.tileOwner.length}, ${this.tileOwner[0].length}`)
     }
 
     setGraphSize(width: number, height: number): void {
@@ -62,6 +71,7 @@ export class CompleteOwnershipGraph implements OwnershipGraph {
 
     getAllOwnedTiles(owner: number): TileCoordXY[] {
         const ownedTiles: TileCoordXY[] = [];
+        console.log(`width: ${this.width}, height: ${this.height}  `);
         for (let x = 0; x < this.width; x++) {
             for (let y = 0; y < this.height; y++) {
                 if (this.isTileOwner(x, y, owner)) {
