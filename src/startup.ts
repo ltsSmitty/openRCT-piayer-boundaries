@@ -15,6 +15,7 @@ export function startup() {
 	const playerCompanyId = cm.addPlayerToCompany(player.id, 1)
 	console.log(`Player ${player.id} is in company ${playerCompanyId}`)
 	cm.ownershipGraph.setRangeOwner({ x: 0, y: 0 }, { x: 10, y: 10 }, playerCompanyId)
+	cm.ownershipGraph.setRangeOwner({ x: 11, y: 11 }, { x: 20, y: 20 }, playerCompanyId)
 
 	// change the surface of those tiles to show that the ownership has changed
 	cm.ownershipGraph.getAllOwnedTiles(playerCompanyId).forEach(tile => {
